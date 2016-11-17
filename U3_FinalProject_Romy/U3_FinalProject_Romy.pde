@@ -11,6 +11,7 @@ void setup()
 {
  fullScreen();
  busImg = loadImage("schoolbusleft");
+ //This is  change.
 }
 
 void draw()

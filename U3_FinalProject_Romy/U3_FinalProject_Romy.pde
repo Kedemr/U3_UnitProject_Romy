@@ -4,32 +4,52 @@ A game where the user plays as a bus driver that picks up kids to go to school. 
  to go to school. The controller will be a steering wheel made from cardboard and two pedals, one for accelerating
  and the other to reverse.
  */
+ //pushMatrix(), popMatrix(), forward vector
 PImage busImgRight;
 PImage busImgLeft;
 PImage kidImg;
-PVector location;
-PVector velocity;
+PVector position;
+PVector velocityUP;
+PVector velocityDOWN;
+PVector velocityRIGHT;
+PVector velocityLEFT;
+int topSpeed;
+PVector vectorF;
 void setup()
 {
   fullScreen();
   busImgLeft = loadImage("schoolbusleft.png");
   busImgLeft.resize(100, 100);
-  /* busImgRight = loadImage("schoolbusright.png");
-   busImgRight.resize(100,100);
-   */  kidImg = loadImage("kid.png");
+  kidImg = loadImage("kid.png");
   kidImg.resize(100, 100);
-  PVector location = new PVector(100, 100);
-  PVector velocity = new PVector(10, 0);
+  vectorF = new PVector(100,100);
+  //position = new PVector(100, 100);
+  velocityUP = new PVector(0, -10);
+  velocityDOWN = new PVector(0, 10);
+  velocityRIGHT = new PVector(10, 0);
+  velocityLEFT = new PVector(-10, 0);
+  topSpeed = 15;
 }
 
 void draw()
 {
-  image(busImgLeft, location.x, location.y);
-  //image(busImgRight, 0, 0);
-//  image(kidImg, 0, 0);
- /* if ( keyPressed && key == 'a')
+  
+  background(#24F03D);
+  image(busImgLeft, vectorF.x, vectorF.y);
+   if (keyPressed && key == 'w')
   {
-   
-    location.add(velocity);
+    vectorF.add(velocityUP);
+  }
+  if (keyPressed && key == 's')
+  {
+    vectorF.add(velocityDOWN);
+  }
+  if (keyPressed && key == 'd')
+  {
+    vectorF.add(velocityRIGHT);
+  }
+  if (keyPressed && key == 'a')
+  {
+    vectorF.add(velocityLEFT);
   }
 }

@@ -8,14 +8,16 @@ A game where the user plays as a bus driver that picks up kids to go to school. 
 PImage busImgRight;
 PImage busImgLeft;
 PImage kidImg;
+PImage school;
 PVector position;
 PVector velocityUP;
 PVector velocityDOWN;
 PVector velocityRIGHT;
 PVector velocityLEFT;
-int topSpeed;
 PVector vectorF;
 int degrees;
+int posXSchool = 0;
+int posYSchool = 0;//height-300;
 void setup()
 {
   fullScreen();
@@ -23,25 +25,36 @@ void setup()
   busImgLeft.resize(100, 100);
   kidImg = loadImage("kid.png");
   kidImg.resize(100, 100);
-  vectorF = new PVector(width/2, height/2);
-  //position = new PVector(100, 100);
+  school = loadImage("school.png");
+  school.resize(400, 300);
+  //vectorF = new PVector(width/2, height/2);
+  vectorF = new PVector(width-100,height-100);
   velocityUP = new PVector(0, -10);
   velocityDOWN = new PVector(0, 10);
   velocityRIGHT = new PVector(10, 0);
   velocityLEFT = new PVector(-10, 0);
-  topSpeed = 15;
   degrees = 0;
 }
 
 void draw()
 {
 
-   background(#24F03D);
+  background(#24F03D);
+  if (dist(vectorF.x, vectorF.y, posXSchool, posYSchool)< 1);
+  {
+   background(0);
+    //class for kid
+  }
+  image(school, posXSchool, posYSchool);
   image(busImgLeft, vectorF.x, vectorF.y);
   if (keyPressed && key == 'w')
   {
     vectorF.add(velocityUP);
   }
+  if (keyPressed && key == 'a')
+  {
+    vectorF.add(velocityLEFT);
+  }  
   if (keyPressed && key == 's')
   {
     vectorF.add(velocityDOWN);
@@ -59,9 +72,5 @@ void draw()
     image(busImgLeft, vectorF.x, vectorF.y, 100, 200);
     popMatrix();
     degrees++;
-  }
-  if (keyPressed && key == 'a')
-  {
-    vectorF.add(velocityLEFT);
   }
 }

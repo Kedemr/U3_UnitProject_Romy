@@ -1,8 +1,10 @@
+//rectMode(CENTER) sets the parameters of the location to be in the center of the square instead of the corner.
 class Bus
 {
   private float _posX;
   private float _posY;
   private PImage _img;
+  float theta = 10;
 
   Bus(float posX, float posY, PImage img)
   {
@@ -10,17 +12,30 @@ class Bus
     _posY = posY;
     _img = img;
   }
+  void Draw()
+  {
+    int deltaTime = 1/frameCount;
+    imageMode(CENTER);
+    pushMatrix();
+    translate(vectorF.x, vectorF.y);
+    rotate(-theta);
+    image(busImg, 0, 0);
+    popMatrix();
+    imageMode(CORNER);
+  }
   private void Move()
   {
-    _posY = _posY-10;
+    if (keyPressed)
+    {
+      if(key == 'd')
+      {
+        theta+=.04;
+      }
+    }
   }
   public void Update()
   {
     Move();
-  }
-  public void Draw()
-  {
-    image(_img, _posX, _posY);
   }
 
   public void isHeight()

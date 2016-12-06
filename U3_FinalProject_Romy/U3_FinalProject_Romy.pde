@@ -4,116 +4,59 @@ A game where the user plays as a bus driver that picks up kids to go to school. 
  to go to school. The controller will be a steering wheel made from cardboard and two pedals, one for accelerating
  and the other to reverse.
  */
-//pushMatrix(), popMatrix(), forward vector
+//make bus go faster, work on distance formula
 PImage busImg;
 PImage kidImg;
 PImage school;
-PVector position;
-PVector velocityUP;
-PVector velocityDOWN;
-PVector velocityRIGHT;
-PVector velocityLEFT;
+PVector posKid;
+PVector velocity;
 PVector vectorF;
 int degrees;
 int posXSchool = 10;
 int posYSchool = 10;//height-300;
 float theta = 1.0;
-Kid[] kids;
+Kid kid;
 Bus bus;
 
 void setup()
 {
   fullScreen();
-  kids = new Kid[4];
-  for (int i=0; i<4; i++)
-  {
-    //   kids[i] = new Kid(kidImg, random(0, width), random(0,height);
-  }
-  busImg = loadImage("schoolbus.png");
-  busImg.resize(100, 100);
+  busImg = loadImage("bus.png");
+  busImg.resize(200, 100);
   kidImg = loadImage("kid.png");
   kidImg.resize(100, 100);
   school = loadImage("school.png");
   school.resize(400, 300);
-  vectorF = new PVector(250, 250);
-  velocityUP = new PVector(0, -10);
-  velocityDOWN = new PVector(0, 10);
-  velocityRIGHT = new PVector(10, 0);
-  velocityLEFT = new PVector(-10, 0);
+  vectorF = new PVector(width/2, height/2);
+  velocity = new PVector(100, 100);
+  posKid = new PVector(width-200, height/2);
   degrees = 0;
-  
   bus = new Bus(vectorF.x, vectorF.y, busImg);
+  kid = new Kid(posKid.x, posKid.y, kidImg);
 }
-
 void draw()
 {
 
   background(#24F03D);
-  
-  bus.Draw();
-  bus.Update();
-  if (dist(vectorF.x, vectorF.y, posXSchool, posYSchool) < 300)
+  if (dist(vectorF.x, vectorF.y, posXSchool, posYSchool) <= 300)
   {
     background(0);
   }
-  image(school, posXSchool, posYSchool);
-  int deltaTime = 1/frameCount;
-
-  if (keyPressed && key == 'x')
+  if (dist(vectorF.x, vectorF.y, posKid.x, posKid.y) <= 300)
   {
-    pushMatrix();
-    translate(vectorF.x, vectorF.y);
-    rotate(-theta);
-    image(busImg, vectorF.x, vectorF.y);
-    popMatrix();
-  }
-  
-  if (key == 'd' == true)
-  {/*
-    pushMatrix();
-    theta = theta - 0.01; 
-    rotate(theta);
-    image(busImg, 0, 0);
-    popMatrix();*/
-    if (keyPressed && key == 'w')
+    background(255);
+    posKid.x = width+200;
+    posKid.y = height+200;
+    if (dist(vectorF.x, vectorF.y, posXSchool, posYSchool) <= 300)
     {
-      vectorF.x = vectorF.x - vectorF.x; 
-      vectorF.y = vectorF.y + vectorF.y;
+      background(255, 200);
+      image(kidImg, 100, 200);
     }
-  }
-  if (key == 'a')
-  {
-    theta = theta +0.01;
-    rotate(theta);
-  }
-  image(busImg, 0, 0);
-  
-//  rect(posX,posY,100,100);
-  
-  /* if (keyPressed && key == 'w')
-   {
-   vectorF.add(velocityUP);
-   }
-   if (keyPressed && key == 'a')
-   {
-   vectorF.add(velocityLEFT);
-   }  
-   if (keyPressed && key == 's')
-   {
-   vectorF.add(velocityDOWN);
-   }
-   if (keyPressed && key == 'd')
-   {
-   vectorF.add(velocityRIGHT);
-   }  */
-  if (keyPressed && key == 'f')
-  {
-    pushMatrix();
-    // image(busImg, vectorF.x, vectorF.y, 100, 200);
-    translate(width/2, height/2);
-    rotate(radians(degrees));
-    image(busImg, vectorF.x, vectorF.y, 100, 200);
-    popMatrix();
-    degrees++;
-  }
+  } 
+  kid.Draw();
+  kid.Update();
+  kid.isHeight();
+  image(school, posXSchool, posYSchool);
+  bus.Draw();
+  bus.Update();
 }

@@ -22,7 +22,6 @@ class Kid
   {
     image(_img, _posX, _posY);
   }
-
   public void isHeight()
   {
 

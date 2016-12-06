@@ -25,13 +25,23 @@ class Bus
   }
   private void Move()
   {
+    int deltaTime = 1/frameCount;
     if (keyPressed)
     {
-      if(key == 'd')
+      if (key == 'd')
       {
-        theta+=.04;
+        theta-=.04;
+      }
+      if (key == 'a')
+      {
+        theta+=0.04;
       }
     }
+
+    velocity.x = cos(-theta);
+    velocity.y = sin(-theta);
+    vectorF.x += velocity.x ;
+    vectorF.y += velocity.y ;
   }
   public void Update()
   {

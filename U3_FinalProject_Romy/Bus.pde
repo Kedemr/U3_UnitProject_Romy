@@ -14,7 +14,6 @@ class Bus
   }
   void Draw()
   {
-    int deltaTime = 1/frameCount;
     imageMode(CENTER);
     pushMatrix();
     translate(vectorF.x, vectorF.y);
@@ -25,7 +24,6 @@ class Bus
   }
   private void Move()
   {
-    int deltaTime = 1/frameCount;
     if (keyPressed)
     {
       if (key == 'd')
@@ -40,7 +38,7 @@ class Bus
 
     velocity.x = cos(-theta);
     velocity.y = sin(-theta);
-    vectorF.x += velocity.x ;
+    vectorF.x = vectorF.x + velocity.x ;
     vectorF.y += velocity.y ;
   }
   public void Update()
@@ -50,14 +48,21 @@ class Bus
 
   public void isHeight()
   {
-
     if (_posY<0)
     {
-      _posY = _posY + 10;
+      _posY = height;
     }
-    if (_posY>height)
+    if(_posY>height)
     {
-      _posY = _posY - 10;
+      _posY = 0;
+    }
+    if(_posX<0)
+    {
+     _posX = width; 
+    }
+    if(_posX>width)
+    {
+     _posX = 0; 
     }
   }
 }

@@ -12,7 +12,7 @@ class Kid
   }
   private void Move()
   {
-    _posY = _posY-10;
+    _posY = _posY-random(1,10);
   }
   public void Update()
   {
@@ -24,14 +24,17 @@ class Kid
   }
   public void isHeight()
   {
-
-    if (_posY<0)
+    if (_posY<-100)
     {
-      _posY = _posY + 10;
+      _posY = height;
     }
-    if (_posY>height)
+  }
+  public void distance()
+  {
+    if (dist(posKid.x, posKid.y, vectorF.x, vectorF.y)<=300)
     {
-      _posY = _posY - 10;
+      background(255);
+     // posKid.x = width+ 20;
     }
   }
 }

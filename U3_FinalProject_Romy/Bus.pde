@@ -1,4 +1,3 @@
-//rectMode(CENTER) sets the parameters of the location to be in the center of the square instead of the corner.
 class Bus
 {
   private float _posX;
@@ -46,23 +45,4 @@ class Bus
     Move();
   }
 
-  public void isHeight()
-  {
-    if (_posY<0)
-    {
-      _posY = height;
-    }
-    if(_posY>height)
-    {
-      _posY = 0;
-    }
-    if(_posX<0)
-    {
-     _posX = width; 
-    }
-    if(_posX>width)
-    {
-     _posX = 0; 
-    }
-  }
 }

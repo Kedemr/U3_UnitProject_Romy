@@ -1,11 +1,11 @@
-class Kid
+class Girl
 {
   private float _posX;
   private float _posY;
   private PImage _img;
   public boolean _isActive;
 
-  Kid(float posX, float posY, PImage img, boolean isActive)
+  Girl(float posX, float posY, PImage img, boolean isActive)
   {
     _posX = posX;
     _posY = posY;

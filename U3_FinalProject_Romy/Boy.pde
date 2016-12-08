@@ -1,11 +1,11 @@
-class Kid
+class Boy
 {
   private float _posX;
   private float _posY;
   private PImage _img;
   public boolean _isActive;
 
-  Kid(float posX, float posY, PImage img, boolean isActive)
+  Boy(float posX, float posY, PImage img, boolean isActive)
   {
     _posX = posX;
     _posY = posY;
@@ -16,7 +16,7 @@ class Kid
 
   private void Move()
   {
-    _posY = _posY-5;
+    _posX = _posX-random(1, 10);
   }
   public void Update()
   {
@@ -29,19 +29,19 @@ class Kid
       image(_img, _posX, _posY);
     }
   }
-  public void isHeight()
+  public void isWidth()
   {
-    if (_posY<-100)
+    if (_posX<-100)
     {
-      _posY = height;
+      _posX = width;
     }
   }
   public void distance()
   {
 
-    if (dist(posKid.x, posKid.y, vectorF.x, vectorF.y)<=100)
+    if (dist(posBoy.x, posBoy.y, vectorF.x, vectorF.y)<=100)
     {
       _isActive = false;
-    }
+    } 
   }
 }
